@@ -26,37 +26,27 @@
         </license>
     </licenses>
 
-    <organization>
-        <name>NukkitX</name>
-        <url>https://github.com/NukkitX</url>
-    </organization>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/NukkitX/Protocol/issues</url>
-    </issueManagement>
-
     <ciManagement>
         <system>Jenkins</system>
-        <url>https://ci.nukkitx.com/job/NukkitX/job/Protocol</url>
+        <url>https://jenkins.waterdog.dev/job/Waterdog/job/Protocol/</url>
     </ciManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/NukkitX/Protocol.git</connection>
-        <developerConnection>scm:git:git@github.com:NukkitX/Protocol.git</developerConnection>
-        <url>https://github.com/NukkitX/Protocol</url>
+        <connection>scm:git:https://github.com/WaterdogPE/Protocol.git</connection>
+        <developerConnection>scm:git:git@github.com:WaterdogPE/Protocol.git</developerConnection>
+        <url>https://github.com/WaterdogPE/Protocol</url>
     </scm>
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>opencollab-releases</name>
-            <url>https://repo.opencollab.dev/release</url>
+            <id>central</id>
+            <name>waterdog-releases</name>
+            <url>https://repo.waterdog.dev/artifactory/releases</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
-            <name>nukkitx-snapshots</name>
-            <url>https://repo.opencollab.dev/snapshot</url>
+            <name>waterdog-snapshots</name>
+            <url>https://repo.waterdog.dev/artifactory/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -124,16 +114,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <links>
-                        <link>https://netty.io/4.1/api</link>
-                        <link>https://ci.nukkitx.com/job/NukkitX/job/math/job/master/javadoc</link>
-                    </links>
-                </configuration>
             </plugin>
         </plugins>
     </build>
