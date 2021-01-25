@@ -19,6 +19,13 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>me.steinborn</groupId>
+            <artifactId>libdeflate-java</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>linux-x86_64</classifier>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.nukkitx</groupId>
             <artifactId>natives</artifactId>
             <version>1.0.2</version>

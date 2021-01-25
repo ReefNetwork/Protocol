@@ -8,11 +8,23 @@ import io.netty.buffer.ByteBufAllocator;
 
 import java.util.zip.DataFormatException;
 
-public class Zlib {
-    public static final Zlib DEFAULT = new Zlib(false);
-    public static final Zlib RAW = new Zlib(true);
+public class Zlib implements ZlibProvider {
+    public static final ZlibProvider DEFAULT_JAVA = new Zlib(false);
+    public static final ZlibProvider RAW_JAVA = new Zlib(true);
+    public static final ZlibProvider DEFAULT;
+    public static final ZlibProvider RAW;
 
-    private static final int CHUNK = 8192;
+    static {
+        if (ZlibNative.isSupported()) {
+            DEFAULT = ZlibNative.defaultNative();
+            RAW = ZlibNative.rawNative();
+        } else {
+            DEFAULT = DEFAULT_JAVA;
+            RAW = RAW_JAVA;
+        }
+    }
+
+    public static final int CHUNK = 8192;
 
     private final ThreadLocal<Inflater> inflaterLocal;
     private final ThreadLocal<Deflater> deflaterLocal;
@@ -33,6 +45,7 @@ public class Zlib {
         };
     }
 
+    @Override
     public ByteBuf inflate(ByteBuf buffer, int maxSize) throws DataFormatException {
         ByteBuf source = null;
         ByteBuf decompressed = ByteBufAllocator.DEFAULT.ioBuffer();
@@ -75,6 +88,7 @@ public class Zlib {
         }
     }
 
+    @Override
     public void deflate(ByteBuf uncompressed, ByteBuf compressed, int level) throws DataFormatException {
         ByteBuf destination = null;
         ByteBuf source = null;

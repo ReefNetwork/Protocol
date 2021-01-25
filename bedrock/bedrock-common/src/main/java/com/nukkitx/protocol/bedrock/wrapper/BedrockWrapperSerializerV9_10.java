@@ -6,6 +6,7 @@ import com.nukkitx.protocol.bedrock.BedrockPacketCodec;
 import com.nukkitx.protocol.bedrock.BedrockSession;
 import com.nukkitx.protocol.bedrock.exception.PacketSerializeException;
 import com.nukkitx.protocol.util.Zlib;
+import com.nukkitx.protocol.util.ZlibProvider;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.ByteBufUtil;
@@ -17,9 +18,9 @@ public class BedrockWrapperSerializerV9_10 extends BedrockWrapperSerializer {
     public static final BedrockWrapperSerializerV9_10 V9 = new BedrockWrapperSerializerV9_10(Zlib.DEFAULT);
     public static final BedrockWrapperSerializerV9_10 V10 = new BedrockWrapperSerializerV9_10(Zlib.RAW);
 
-    private final Zlib zlib;
+    private final ZlibProvider zlib;
 
-    private BedrockWrapperSerializerV9_10(Zlib zlib) {
+    private BedrockWrapperSerializerV9_10(ZlibProvider zlib) {
         this.zlib = zlib;
     }
 

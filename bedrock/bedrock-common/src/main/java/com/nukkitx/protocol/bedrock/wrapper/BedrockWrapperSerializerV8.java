@@ -6,6 +6,7 @@ import com.nukkitx.protocol.bedrock.BedrockPacketCodec;
 import com.nukkitx.protocol.bedrock.BedrockSession;
 import com.nukkitx.protocol.bedrock.exception.PacketSerializeException;
 import com.nukkitx.protocol.util.Zlib;
+import com.nukkitx.protocol.util.ZlibProvider;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.ByteBufUtil;
@@ -19,7 +20,7 @@ import java.util.zip.DataFormatException;
 public class BedrockWrapperSerializerV8 extends BedrockWrapperSerializer {
     public static final BedrockWrapperSerializerV8 INSTANCE = new BedrockWrapperSerializerV8();
 
-    private static final Zlib ZLIB = Zlib.DEFAULT;
+    private static final ZlibProvider ZLIB = Zlib.DEFAULT;
 
     @Override
     public void serialize(ByteBuf buffer, BedrockPacketCodec codec, Collection<BedrockPacket> packets, int level, BedrockSession session) {
