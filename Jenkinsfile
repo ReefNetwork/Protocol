@@ -16,7 +16,7 @@ pipeline {
 
         stage('Snapshot') {
             when {
-                branch "protocol"
+                branch "waterdog"
             }
             steps {
                 sh 'mvn source:jar deploy -DskipTests'
