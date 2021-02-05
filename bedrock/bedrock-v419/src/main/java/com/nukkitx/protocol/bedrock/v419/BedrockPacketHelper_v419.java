@@ -20,7 +20,7 @@ public class BedrockPacketHelper_v419 extends BedrockPacketHelper_v407 {
 
     protected static final AnimationExpressionType[] EXPRESSION_TYPES = AnimationExpressionType.values();
 
-    @Override
+   /* @Override
     protected void registerCommandParams() {
         this.addCommandParam(1, CommandParamType.INT);
         this.addCommandParam(2, CommandParamType.FLOAT);
@@ -39,7 +39,7 @@ public class BedrockPacketHelper_v419 extends BedrockPacketHelper_v407 {
         this.addCommandParam(45, CommandParamType.TEXT);
         this.addCommandParam(49, CommandParamType.JSON);
         this.addCommandParam(56, CommandParamType.COMMAND);
-    }
+    }*/
 
     @Override
     public void readExperiments(ByteBuf buffer, List<ExperimentData> experiments) {
