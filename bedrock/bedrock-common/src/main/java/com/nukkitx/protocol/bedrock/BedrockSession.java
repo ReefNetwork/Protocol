@@ -301,6 +301,10 @@ public abstract class BedrockSession implements MinecraftSession<BedrockPacket> 
         return this.connection.getAddress();
     }
 
+    public InetSocketAddress getRealAddress() {
+        return this.connection.getRealAddress();
+    }
+
     public boolean isClosed() {
         return this.connection.isClosed();
     }
@@ -349,6 +353,14 @@ public abstract class BedrockSession implements MinecraftSession<BedrockPacket> 
     @Override
     public long getLatency() {
         return this.connection.getPing();
+    }
+
+    public EventLoop getEventLoop() {
+        return this.eventLoop;
+    }
+
+    public SessionConnection<ByteBuf> getConnection() {
+        return this.connection;
     }
 
 //    @ParametersAreNonnullByDefault
