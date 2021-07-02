@@ -2,26 +2,33 @@ package com.nukkitx.protocol.bedrock.packet;
 
 import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.BedrockPacketType;
-import com.nukkitx.protocol.bedrock.data.NpcRequestType;
 import com.nukkitx.protocol.bedrock.handler.BedrockPacketHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(doNotUseGetters = true, callSuper = false)
-public class NpcRequestPacket extends BedrockPacket {
+public class NpcDialoguePacket extends BedrockPacket {
+
     private long runtimeEntityId;
-    private NpcRequestType requestType;
-    private String command;
-    private int actionType;
+    private Action action;
+    private String dialogue;
     private String sceneName;
+    private String npcName;
+    private String actionJson;
 
     @Override
-    public final boolean handle(BedrockPacketHandler handler) {
+    public boolean handle(BedrockPacketHandler handler) {
         return handler.handle(this);
     }
 
+    @Override
     public BedrockPacketType getPacketType() {
-        return BedrockPacketType.NPC_REQUEST;
+        return BedrockPacketType.NPC_DIALOGUE;
+    }
+
+    public enum Action {
+        OPEN,
+        CLOSE
     }
 }
