@@ -5,6 +5,7 @@ import com.nukkitx.math.vector.Vector3f;
 import com.nukkitx.math.vector.Vector3i;
 import com.nukkitx.nbt.NBTInputStream;
 import com.nukkitx.nbt.NBTOutputStream;
+import com.nukkitx.nbt.NbtType;
 import com.nukkitx.nbt.NbtUtils;
 import com.nukkitx.network.VarInts;
 import com.nukkitx.network.util.Preconditions;
@@ -297,7 +298,13 @@ public abstract class BedrockPacketHelper {
 
     public AsciiString readLEAsciiString(ByteBuf buffer) {
         Preconditions.checkNotNull(buffer, "buffer");
-        return (AsciiString) buffer.readCharSequence(buffer.readIntLE(), StandardCharsets.US_ASCII);
+        CharSequence string = buffer.readCharSequence(buffer.readIntLE(), StandardCharsets.US_ASCII);
+        // Older Netty versions do not necessarily provide an AsciiString for this method
+        if (string instanceof AsciiString) {
+            return (AsciiString) string;
+        } else {
+            return new AsciiString(string);
+        }
     }
 
     public void writeLEAsciiString(ByteBuf buffer, AsciiString string) {
@@ -543,6 +550,22 @@ public abstract class BedrockPacketHelper {
     public <T> void writeTag(ByteBuf buffer, T tag) {
         try (NBTOutputStream writer = NbtUtils.createNetworkWriter(new ByteBufOutputStream(buffer))) {
             writer.writeTag(tag);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <T> T readTagValue(ByteBuf buffer, NbtType<T> type) {
+        try (NBTInputStream reader = NbtUtils.createNetworkReader(new ByteBufInputStream(buffer))) {
+            return reader.readValue(type);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <T> void writeTagValue(ByteBuf buffer, T tag) {
+        try (NBTOutputStream writer = NbtUtils.createNetworkWriter(new ByteBufOutputStream(buffer))) {
+            writer.writeValue(tag);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -156,7 +156,31 @@ public enum EntityData {
     /**
      * @since v428
      */
-    UPDATE_PROPERTIES(null);
+    UPDATE_PROPERTIES(null),
+    /**
+     * @since v503
+     */
+    MOVEMENT_SOUND_DISTANCE_OFFSET(null),
+    /**
+     * @since v503
+     */
+    HEARTBEAT_INTERVAL_TICKS(Type.INT),
+    /**
+     * @since v503
+     */
+    HEARTBEAT_SOUND_EVENT(Type.INT),
+    /**
+     * @since v526
+     */
+    PLAYER_LAST_DEATH_POS(Type.VECTOR3I),
+    /**
+     * @since v526
+     */
+    PLAYER_LAST_DEATH_DIMENSION(Type.INT),
+    /**
+     * @since v526
+     */
+    PLAYER_HAS_DIED(Type.BYTE);
 
     private final Type type;
     private final boolean flags;

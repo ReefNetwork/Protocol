@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(doNotUseGetters = true, callSuper = false)
@@ -29,7 +30,7 @@ public class StartGamePacket extends BedrockPacket {
     private Vector3f playerPosition;
     private Vector2f rotation;
     // Level settings start
-    private int seed;
+    private long seed;
     private SpawnBiomeType spawnBiomeType = SpawnBiomeType.DEFAULT;
     private String customBiomeName = "";
     private int dimensionId;
@@ -109,6 +110,12 @@ public class StartGamePacket extends BedrockPacket {
      */
     private long blockRegistryChecksum;
 
+    /**
+     * @since v526
+     */
+    private Object playerPropertyData;
+    private UUID worldTemplateId;
+
     @Override
     public final boolean handle(BedrockPacketHandler handler) {
         return handler.handle(this);
@@ -116,6 +123,15 @@ public class StartGamePacket extends BedrockPacket {
 
     public BedrockPacketType getPacketType() {
         return BedrockPacketType.START_GAME;
+    }
+
+    @Deprecated
+    public void setSeed(int seed) {
+        this.seed = seed;
+    }
+
+    public void setSeed(long seed) {
+        this.seed = seed;
     }
 
     @Value
