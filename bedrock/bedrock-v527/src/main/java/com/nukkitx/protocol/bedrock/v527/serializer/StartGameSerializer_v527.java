@@ -1,4 +1,4 @@
-package com.nukkitx.protocol.bedrock.beta.serializer;
+package com.nukkitx.protocol.bedrock.v527.serializer;
 
 import com.nukkitx.protocol.bedrock.BedrockPacketHelper;
 import com.nukkitx.protocol.bedrock.BedrockSession;
@@ -9,8 +9,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class StartGameSerializerBeta extends StartGameSerializer_v465 {
-    public static final StartGameSerializerBeta INSTANCE = new StartGameSerializerBeta();
+public class StartGameSerializer_v527 extends StartGameSerializer_v465 {
+    public static final StartGameSerializer_v527 INSTANCE = new StartGameSerializer_v527();
 
     @Override
     public void serialize(ByteBuf buffer, BedrockPacketHelper helper, StartGamePacket packet, BedrockSession session) {
