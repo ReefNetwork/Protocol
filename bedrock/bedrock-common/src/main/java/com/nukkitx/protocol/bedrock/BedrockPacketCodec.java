@@ -63,7 +63,8 @@ public final class BedrockPacketCodec {
         try {
             serializer.deserialize(buf, this.helper, packet, session);
         } catch (Exception e) {
-            throw new PacketSerializeException("Error whilst deserializing " + packet, e);
+            return packet;
+//            throw new PacketSerializeException("Error whilst deserializing " + packet, e);
         }
 
         if (log.isDebugEnabled() && buf.isReadable()) {
@@ -84,7 +85,7 @@ public final class BedrockPacketCodec {
             }
             serializer.serialize(buf, this.helper, packet, session);
         } catch (Exception e) {
-            throw new PacketSerializeException("Error whilst serializing " + packet, e);
+//            throw new PacketSerializeException("Error whilst serializing " + packet, e);
         } finally {
             ReferenceCountUtil.release(packet);
         }
