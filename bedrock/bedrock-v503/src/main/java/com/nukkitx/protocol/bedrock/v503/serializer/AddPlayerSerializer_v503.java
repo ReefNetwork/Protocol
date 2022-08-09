@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class AddPlayerSerializer_v503 implements BedrockPacketSerializer<AddPlayerPacket> {
     public static final AddPlayerSerializer_v503 INSTANCE = new AddPlayerSerializer_v503();
 
-    private static final GameType[] VALUES = GameType.values();
+    protected static final GameType[] VALUES = GameType.values();
 
     @Override
     public void serialize(ByteBuf buffer, BedrockPacketHelper helper, AddPlayerPacket packet, BedrockSession session) {
